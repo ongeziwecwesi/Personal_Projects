@@ -4,14 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Calculator extends JFrame implements ActionListener {
-    private JTextField text;
-    private JButton[] numberButtons;
-    private JButton[] functionButtons;
-    private JButton addButton, subButton, mulButton, divButton, clrButton, eqlButton, dotButton, delButton;
-    private JPanel panel;
+    JTextField text;
+    JButton[] numberButtons;
+    JButton add, subtract, multiply, divide, clear, equal, dot, delete;
+    JPanel panel;
 
-    private double num1 = 0, num2 = 0, result = 0;
-    private char operator;
+     double num1 , num2 , result;
+     char operator;
 
     Calculator() {
         setTitle("Basic Calculator");
@@ -23,7 +22,7 @@ public class Calculator extends JFrame implements ActionListener {
         text.setBounds(10, 10, 270, 50);
 
         numberButtons = new JButton[10]; //array for digits 0-9
-        functionButtons = new JButton[8]; // array for operations
+        
 
         panel = new JPanel();
         panel.setBounds(10, 70, 270, 280);
@@ -35,36 +34,32 @@ public class Calculator extends JFrame implements ActionListener {
             numberButtons[i].addActionListener(this); // add an action listener to each button
         }
 
-        addButton = new JButton("+");
-        subButton = new JButton("-");
-        mulButton = new JButton("*");
-        divButton = new JButton("/");
-        eqlButton = new JButton("=");
-        clrButton = new JButton("C");
-        dotButton = new JButton(".");
-        delButton = new JButton("Del");
+        add = new JButton("+");
+        subtract = new JButton("-");
+        multiply = new JButton("*");
+        divide = new JButton("/");
+        equal = new JButton("=");
+        clear = new JButton("C");
+        dot = new JButton(".");
+        delete = new JButton("Del");
 
-        functionButtons[0] = addButton;
-        functionButtons[1] = subButton;
-        functionButtons[2] = mulButton;
-        functionButtons[3] = divButton;
-        functionButtons[4] = eqlButton;
-        functionButtons[5] = clrButton;
-        functionButtons[6] = dotButton;
-        functionButtons[7] = delButton;
+        add.addActionListener(this);
+        subtract.addActionListener(this);
+        multiply.addActionListener(this);
+        divide.addActionListener(this);
+        clear.addActionListener(this);
+        dot.addActionListener(this);
+        delete.addActionListener(this);
+        equal.addActionListener(this);
 
-        for (JButton button : functionButtons) {
-            button.addActionListener(this);
-        }
-
-        panel.add(clrButton);
-        panel.add(delButton);
-        panel.add(divButton);
-        panel.add(mulButton);
-        panel.add(subButton);
-        panel.add(addButton);
-        panel.add(eqlButton);
-        panel.add(dotButton);
+        panel.add(clear);
+        panel.add(delete);
+        panel.add(divide);
+        panel.add(multiply);
+        panel.add(subtract);
+        panel.add(add);
+        panel.add(equal);
+        panel.add(dot);
 
         for (int i = 0; i < 10; i++) {
             panel.add(numberButtons[i]);
@@ -82,40 +77,40 @@ public class Calculator extends JFrame implements ActionListener {
                 text.setText(text.getText().concat(String.valueOf(i)));
             }
         }
-        if (e.getSource() == dotButton) {
+        if (e.getSource() == dot) {
             text.setText(text.getText().concat("."));
         }
-        if (e.getSource() == clrButton) {
+        if (e.getSource() == clear) {
             text.setText("");
         }
-        if (e.getSource() == delButton) {
+        if (e.getSource() == delete) {
             String str = text.getText();
             text.setText("");
             for (int i = 0; i < str.length() - 1; i++) {
                 text.setText(text.getText() + str.charAt(i));
             }
         }
-        if (e.getSource() == addButton) {
+        if (e.getSource() == add) {
             num1 = Double.parseDouble(text.getText());
             operator = '+';
-            text.setText("");
+           text.setText("");
         }
-        if (e.getSource() == subButton) {
+        if (e.getSource() == subtract) {
             num1 = Double.parseDouble(text.getText());
             operator = '-';
             text.setText("");
         }
-        if (e.getSource() == mulButton) {
+        if (e.getSource() == multiply) {
             num1 = Double.parseDouble(text.getText());
             operator = '*';
-            text.setText("");
+           text.setText("");
         }
-        if (e.getSource() == divButton) {
+        if (e.getSource() == divide) {
             num1 = Double.parseDouble(text.getText());
             operator = '/';
             text.setText("");
         }
-        if (e.getSource() == eqlButton) {
+        if (e.getSource() == equal) {
             num2 = Double.parseDouble(text.getText());
 
             switch (operator) {
