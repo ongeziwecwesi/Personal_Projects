@@ -1,13 +1,13 @@
 import javax.swing.*;
-import java.awt.*;
+
 import java.awt.event.*;
 
 public class CalculatorWithRadioButton extends JFrame implements ActionListener {
-    private JRadioButton basicCalculatorRadioButton; // radio button for the basic calculator
-    private JRadioButton scientificCalculatorRadioButton; // radio button for the scientific calculator
-    private Calculator basicCalculator; //basic calculator class
-    private ScieCalculator scientificCalculator; // scientific calculator class
-    private JPanel panel;
+    JRadioButton basicCalculatorRadioButton; // radio button for the basic calculator
+    JRadioButton scientificCalculatorRadioButton; // radio button for the scientific calculator
+    Calculator basicCalculator; //basic calculator class
+    ScieCalculator scientificCalculator; // scientific calculator class
+    JPanel panel;
 
     CalculatorWithRadioButton() {
         setTitle("Calculator Selection");
@@ -41,13 +41,14 @@ public class CalculatorWithRadioButton extends JFrame implements ActionListener 
                 basicCalculator.setVisible(true);
             }
         } else if (e.getSource() == scientificCalculatorRadioButton) {
-            if (scientificCalculator == null) {
+          if (scientificCalculator == null) {
                 scientificCalculator = new ScieCalculator();
             } else {
                 scientificCalculator.setVisible(true);
             }
-        }
+        
     }
+}
 
     public static void main(String[] args) {
         new CalculatorWithRadioButton();
