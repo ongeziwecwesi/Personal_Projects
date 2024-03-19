@@ -4,15 +4,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ScieCalculator extends JFrame implements ActionListener {
-    private JTextField text;
-    private JButton[] numberButtons;
-    private JButton[] functionButtons;
-    private JButton addButton, subButton, mulButton, divButton, clrButton, eqlButton, dotButton, delButton,
-     sinButton, cosButton, tanButton, squareButton, cubeButton, sqrtButton;
-    private JPanel panel;
+     JTextField text;
+     JButton[] numberButtons;
+     JButton add, subtract, multiply, divide, clear, equal, dot, delete,
+     sin, cos, tan, square, cube, squareroot;
+     JPanel panel;
 
-    private double num1 = 0, num2 = 0, result = 0;
-    private char operator;
+     double num1, num2, result;
+    char operator;
 
     ScieCalculator() {
         setTitle("Scientific Calculator");
@@ -25,7 +24,7 @@ public class ScieCalculator extends JFrame implements ActionListener {
         text.setEditable(false);
 
         numberButtons = new JButton[10]; //array for digits 0-9
-        functionButtons = new JButton[14]; // array for operations
+        
 
         panel = new JPanel();
         panel.setBounds(10, 70, 270, 280);
@@ -37,54 +36,50 @@ public class ScieCalculator extends JFrame implements ActionListener {
             numberButtons[i].addActionListener(this); // add an action listener to each button
         }
 
-        addButton = new JButton("+");
-        subButton = new JButton("-");
-        mulButton = new JButton("*");
-        divButton = new JButton("/");
-        eqlButton = new JButton("=");
-        clrButton = new JButton("C");
-        dotButton = new JButton(".");
-        delButton = new JButton("Del");
-        sinButton = new JButton("sin");
-        cosButton = new JButton("cos");
-        tanButton = new JButton("tan");
-        squareButton = new JButton("x^2");
-        cubeButton = new JButton("x^3");
-        sqrtButton = new JButton("sqrt");
+        add = new JButton("+");
+        subtract = new JButton("-");
+        multiply = new JButton("*");
+        divide = new JButton("/");
+        equal = new JButton("=");
+        clear = new JButton("C");
+        dot = new JButton(".");
+        delete = new JButton("Del");
+        sin = new JButton("sin");
+        cos = new JButton("cos");
+        tan = new JButton("tan");
+        square = new JButton("x^2");
+        cube = new JButton("x^3");
+        squareroot = new JButton("sqrt");
 
-        functionButtons[0] = addButton;
-        functionButtons[1] = subButton;
-        functionButtons[2] = mulButton;
-        functionButtons[3] = divButton;
-        functionButtons[4] = eqlButton;
-        functionButtons[5] = clrButton;
-        functionButtons[6] = dotButton;
-        functionButtons[7] = delButton;
-        functionButtons[8] = sinButton;
-        functionButtons[9] = cosButton;
-        functionButtons[10] = tanButton;
-        functionButtons[11] = squareButton;
-        functionButtons[12] = cubeButton;
-        functionButtons[13] = sqrtButton;
+         add.addActionListener(this);
+        subtract.addActionListener(this);
+        multiply.addActionListener(this);
+         divide.addActionListener(this);
+        equal.addActionListener(this);
+       clear.addActionListener(this);
+        dot.addActionListener(this);
+        delete.addActionListener(this);
+        sin.addActionListener(this);
+         cos.addActionListener(this);
+       tan.addActionListener(this);
+        square.addActionListener(this);
+        cube.addActionListener(this);
+        squareroot.addActionListener(this);
 
-        for (JButton button : functionButtons) {
-            button.addActionListener(this);
-        } 
-
-        panel.add(clrButton);
-        panel.add(delButton);
-        panel.add(divButton);
-        panel.add(mulButton);
-        panel.add(subButton);
-        panel.add(addButton);
-        panel.add(eqlButton);
-        panel.add(dotButton);
-        panel.add(sinButton);
-        panel.add(cosButton);
-        panel.add(tanButton);
-        panel.add(squareButton);
-        panel.add(cubeButton);
-        panel.add(sqrtButton);
+        panel.add(clear);
+        panel.add(delete);
+        panel.add(divide);
+        panel.add(multiply);
+        panel.add(subtract);
+        panel.add(add);
+        panel.add(equal);
+        panel.add(dot);
+        panel.add(sin);
+        panel.add(cos);
+        panel.add(tan);
+        panel.add(square);
+        panel.add(cube);
+        panel.add(squareroot);
 
         for (int i = 0; i < 10; i++) {
             panel.add(numberButtons[i]);
@@ -103,70 +98,70 @@ public class ScieCalculator extends JFrame implements ActionListener {
                 text.setText(text.getText().concat(String.valueOf(i)));
             }
         }
-        if (e.getSource() == dotButton) {
+        if (e.getSource() == dot) {
             text.setText(text.getText().concat("."));
         }
-        if (e.getSource() == clrButton) {
+        if (e.getSource() == clear) {
             text.setText("");
         }
-        if (e.getSource() == delButton) {
+        if (e.getSource() == delete) {
             String str = text.getText();
             text.setText("");
             for (int i = 0; i < str.length() - 1; i++) {
                 text.setText(text.getText() + str.charAt(i));
             }
         }
-        if (e.getSource() == addButton) {
+        if (e.getSource() == add) {
             num1 = Double.parseDouble(text.getText());
             operator = '+';
             text.setText("");
         }
-        if (e.getSource() == subButton) {
+        if (e.getSource() == subtract) {
             num1 = Double.parseDouble(text.getText());
             operator = '-';
             text.setText("");
         }
-        if (e.getSource() == mulButton) {
+        if (e.getSource() == multiply) {
             num1 = Double.parseDouble(text.getText());
             operator = '*';
             text.setText("");
         }
-        if (e.getSource() == sinButton) {
+        if (e.getSource() == sin) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.sin(Math.toRadians(num1)); // Calculate sin value in radians
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == cosButton) {
+        if (e.getSource() == cos) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.cos(Math.toRadians(num1)); // Calculate cos value in radians
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == tanButton) {
+        if (e.getSource() == tan) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.tan(Math.toRadians(num1)); // Calculate tan value in radians
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == squareButton) {
+        if (e.getSource() == square) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.pow(num1, 2); // Calculate square
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == cubeButton) {
+        if (e.getSource() == cube) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.pow(num1, 3); // Calculate cube
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == sqrtButton) {
+        if (e.getSource() == squareroot) {
             num1 = Double.parseDouble(text.getText());
             double result = Math.sqrt(num1); // Calculate square root
             text.setText(String.valueOf(result));
         }
-        if (e.getSource() == divButton) {
+        if (e.getSource() == divide) {
             num1 = Double.parseDouble(text.getText());
             operator = '/';
             text.setText("");
         }
-        if (e.getSource() == eqlButton) {
+        if (e.getSource() == equal) {
             num2 = Double.parseDouble(text.getText());
 
             switch (operator) {
@@ -194,4 +189,3 @@ public class ScieCalculator extends JFrame implements ActionListener {
         new ScieCalculator();
     }
 }
-
